@@ -23,6 +23,7 @@ public class City extends JFrame {
 	private String cityID;
 
 	private JLabel stationedUnitLabel;
+	private JButton stationedUnitOpenButton;
 	private JLabel populationLabel;
 	private JLabel buildQueueLabel;
 
@@ -46,7 +47,7 @@ public class City extends JFrame {
 		JPanel stationedUnitPanel = new JPanel ();
 		stationedUnitPanel.setLayout (new BorderLayout());
 
-		JButton stationedUnitOpenButton = new JButton ("Open");
+		stationedUnitOpenButton = new JButton ("Open");
 		stationedUnitOpenButton.addActionListener (new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String title = ((JFrame)((JButton)e.getSource()).getParent().getParent().getParent().getParent().getParent()).getTitle();
@@ -215,8 +216,10 @@ public class City extends JFrame {
 
 			if (unit != null) {
 				buffer += unit;
+				stationedUnitOpenButton.setEnabled(true);
 			} else {
 				buffer += "Empty";
+				stationedUnitOpenButton.setEnabled(false);
 			}
 		}
 
