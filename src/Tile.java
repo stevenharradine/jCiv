@@ -49,6 +49,10 @@ public abstract class Tile extends JButton {
 
 	public void update () {
 		this.setText (this.toString());
+
+		if (this.city != null) {
+			this.city.updateLabels();
+		}
 	}
 
 	public String toString () {
