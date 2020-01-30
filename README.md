@@ -1,6 +1,8 @@
 # jCiv
 Build cities, grow your population and train them to be useful.
 
+[![Licence](https://img.shields.io/badge/Licence-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+
 ## Requirements
  * Java 11 (JDK/JRE)
 
