@@ -31,4 +31,11 @@ public class BuildCity extends Action {
 
 		return true;
 	}
+
+	public void updateLabels () {
+		Tile tile = JCiv.map.getTile(this.getParentUnit().getUnitID());
+		City city = tile.getCity();
+
+		this.setEnabled(city == null ? true : false);
+	}
 }

@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 import java.lang.StringBuilder;
 
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -103,6 +104,7 @@ public abstract class Unit extends JFrame {
 			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x + 1, y - 1);
 			    }
 
+				unit.updateLabels();
 				unit.repaint();
 				JCiv.map.repaint();
 			}
@@ -134,7 +136,7 @@ public abstract class Unit extends JFrame {
 		this.moves = newMoves;
 		this.moves_left = newMoves;
 
-		updateMovesLabel();
+		updateLabels();
 	}
 
 	public int getMoves () {
@@ -147,15 +149,11 @@ public abstract class Unit extends JFrame {
 		if (this.moves_left >= 1) {
 			this.moves_left--;
 
-			updateMovesLabel();
+			updateLabels();
 			
 			return true;
 		}
 		return false;
-	}
-
-	private void updateMovesLabel () {
-		movesLabel.setText ("Moves: " + this.moves_left + " / " + this.moves);
 	}
 
 	public String toString() {
@@ -167,7 +165,7 @@ public abstract class Unit extends JFrame {
 
 	public void resetMoves() {
 		this.moves_left = this.moves;
-		updateMovesLabel();
+		updateLabels();
 	}
 
 	public Action[] getActions () {
@@ -192,6 +190,21 @@ public abstract class Unit extends JFrame {
 	}
 	public int getProductionCost () {
 		return this.productionCost;
+	}
+
+
+	private void updateMovesLabel () {
+		movesLabel.setText ("Moves: " + this.moves_left + " / " + this.moves);
+	}
+	public void updateLabels () {
+		updateMovesLabel ();
+
+		Component[] components = this.actionsPanel.getComponents();
+		if (components.length > 0) {
+			for (int i = 0; i < components.length; i++) {
+				((Action)components[i]).updateLabels();
+			}
+		}
 	}
 
 	public void displayUnit () {

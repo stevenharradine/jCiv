@@ -7,6 +7,7 @@ public abstract class Action extends JButton {
 	private String name;
 
 	public abstract boolean act ();
+	public abstract void updateLabels ();
 
 	public Unit getParentUnit () {
 		return parentUnit;

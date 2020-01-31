@@ -188,6 +188,13 @@ public class Map extends JFrame {
 	public void addCity (City city, int x, int y) {
 		tiles[x][y].setCity(city);
 		city.updateLabels();
+
+		// covers start (turn 0) state where a unit might be in the city
+		// TODO move to map init function why am i doing this every time i add a city if its a turn 0 only condition (validate this theory?)
+		if (JCiv.map.getTile(x, y).getUnit() != null) {
+			System.out.println (JCiv.map.getTile(x, y).getCity());
+			JCiv.map.getTile(x, y).getUnit().updateLabels();
+		}
 	}
 
 	public void endTurn () {
