@@ -1,6 +1,7 @@
 # jCiv
 Build cities, grow your population and train them to be useful.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c93b1e46c7654ea287ef2a0aa16ae922)](https://app.codacy.com/manual/stevenharradineOrganization/jCiv?utm_source=github.com&utm_medium=referral&utm_content=stevenharradine/jCiv&utm_campaign=Badge_Grade_Dashboard)
 [![Licence](https://img.shields.io/badge/Licence-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
 ## Requirements
