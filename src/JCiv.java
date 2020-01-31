@@ -18,7 +18,6 @@ class JCiv {
     	map.addCity(city, 1, 2);
     }
 
-
 	public static String generateRandomID () {
 		final String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		int count = 8; // 2.8T options (2.8211099e+12)
