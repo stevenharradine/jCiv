@@ -2,6 +2,8 @@
 Build cities, grow your population and train them to be useful.
 
 [![Licence](https://img.shields.io/badge/Licence-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8ca45c267edb4b5a834265b017eb570d)](https://www.codacy.com/manual/stevenharradineOrganization/jCiv?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=stevenharradine/jCiv&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8de99b48e390054bf8a0/maintainability)](https://codeclimate.com/github/stevenharradine/jCiv/maintainability)
 
 ## Requirements
 * Java 11 (JDK/JRE)
