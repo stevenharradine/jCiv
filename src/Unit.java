@@ -86,21 +86,21 @@ public abstract class Unit extends JFrame {
 				}
 				
 				boolean isMoveSuccess = false;
-			    if (action == "9") {			// move up/right
+			    if (action.equals("9")) {			// move up/right
 			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x - 1, y + 1);
-			    } else if (action == "8") {	// move up
+			    } else if (action.equals("8")) {	// move up
 			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x - 1, y);
-			    } else if (action == "7") {	// move up/left
+			    } else if (action.equals("7")) {	// move up/left
 			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x - 1, y - 1);
-			    } else if (action == "4") {	// move left
+			    } else if (action.equals("4")) {	// move left
 			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x, y - 1);
-			    } else if (action == "6") {	// move right
+			    } else if (action.equals("6")) {	// move right
 			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x, y + 1);
-			    } else if (action == "3") {	// move down/right
+			    } else if (action.equals("3")) {	// move down/right
 			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x + 1, y + 1);
-			    } else if (action == "2") {	// move down
+			    } else if (action.equals("2")) {	// move down
 			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x + 1, y);
-			    } else if (action == "1") {	// move down/left
+			    } else if (action.equals("1")) {	// move down/left
 			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x + 1, y - 1);
 			    }
 
