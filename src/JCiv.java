@@ -3,8 +3,6 @@
  */
 package stevenharradine.jciv;
 
-import java.io.InputStreamReader;
-
 class JCiv {
 	public static Map map;
 

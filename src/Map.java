@@ -54,7 +54,6 @@ public class Map extends JFrame {
 		
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				Tile tile = tiles[i][j];
 				JButton button = tiles[i][j];
 
 				mapPanel.add(button);//adding button in JFrame 
@@ -143,8 +142,6 @@ public class Map extends JFrame {
 
 	public Tile getTile (String id) {
 		// find the unit on the map
-		int x = -1;
-		int y = -1;
 		for (int i = 0; i < JCiv.map.getTiles().length; i++) {
 			for (int j = 0; j < JCiv.map.getTiles()[i].length; j++) {
 				if (JCiv.map.getTile(i,j).getUnit() != null && JCiv.map.getTile(i,j).getUnit().getUnitID().equals(id) ||

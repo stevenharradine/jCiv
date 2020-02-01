@@ -3,9 +3,6 @@
  */
 package stevenharradine.jciv;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
 import java.awt.event.WindowEvent;
 
 public class BuildCity extends Action {
@@ -16,7 +13,6 @@ public class BuildCity extends Action {
 	}
 
 	public boolean act () {
-		BufferedReader ob = new BufferedReader(new InputStreamReader(System.in));
 		Tile tile = JCiv.map.getTile(this.getParentUnit().getUnitID());
 
 		TextInput cityNameInput = new TextInput ("Enter city name", "kanata", this.getParentUnit()); 

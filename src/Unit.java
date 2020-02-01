@@ -10,8 +10,6 @@ import javax.swing.JPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import java.util.Random;
-
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
@@ -114,7 +112,7 @@ public abstract class Unit extends JFrame {
 	}
 
 	public Unit (String newType) {
-		if (!newType.equals("")) {
+		if (!"".equals(newType)) {
 			this.setType (newType);
 		} else {
 			this.type = null;
