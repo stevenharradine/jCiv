@@ -102,9 +102,11 @@ public abstract class Unit extends JFrame {
 			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x + 1, y - 1);
 			    }
 
-				unit.updateLabels();
-				unit.repaint();
-				JCiv.map.repaint();
+			    if (isMoveSuccess) {
+					unit.updateLabels();
+					unit.repaint();
+					JCiv.map.repaint();
+			    }
 			}
 		});
 
