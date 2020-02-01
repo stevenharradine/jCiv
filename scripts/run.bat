@@ -1,1 +1,1 @@
-java -classpath bin JCiv
+java -classpath bin stevenharradine.jciv.JCiv

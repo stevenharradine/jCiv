@@ -1,6 +1,8 @@
 /*
  * (c) 2020 Steven J Harradine
  */
+package stevenharradine.jciv;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 

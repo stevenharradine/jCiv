@@ -1,6 +1,8 @@
 /*
  * (c) 2020 Steven J Harradine
  */
+package stevenharradine.jciv;
+
 public class CityBuildQueue {
 	private Unit unit;
 	private int production;

@@ -1,7 +1,8 @@
 /*
  * (c) 2020 Steven J Harradine
  */
-import java.io.BufferedReader;
+package stevenharradine.jciv;
+
 import java.io.InputStreamReader;
 
 class JCiv {

@@ -1,6 +1,8 @@
 /*
  * (c) 2020 Steven J Harradine
  */
+package stevenharradine.jciv;
+
 import javax.swing.JButton;
 public abstract class Action extends JButton {
 	private Unit parentUnit;

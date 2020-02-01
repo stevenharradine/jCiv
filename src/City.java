@@ -1,6 +1,7 @@
 /*
  * (c) 2020 Steven J Harradine
  */
+package stevenharradine.jciv;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,7 +15,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
-import javax.swing.JDialog;
 
 public class City extends JFrame {
 	private String name;

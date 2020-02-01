@@ -1,1 +1,2 @@
-rm -rf bin && javac -d bin/ -sourcepath src src/JCiv.java
+#!/bin/bash
+rm -rf bin && javac -d bin/ src/*.java

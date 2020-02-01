@@ -1,10 +1,10 @@
 /*
  * (c) 2020 Steven J Harradine
  */
+package stevenharradine.jciv;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JDialog;
 
 public class TextInput {
 	private String text;

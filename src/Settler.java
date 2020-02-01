@@ -1,6 +1,8 @@
 /*
  * (c) 2020 Steven J Harradine
  */
+package stevenharradine.jciv;
+
 public class Settler extends Unit {
 	public Settler () {
 		this.setType ("SETTLER");

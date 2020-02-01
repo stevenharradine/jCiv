@@ -1,1 +1,1 @@
-javac -d bin/ -sourcepath src src/JCiv.java
+javac -d bin/ src/*.java
