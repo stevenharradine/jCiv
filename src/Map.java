@@ -161,19 +161,19 @@ public class Map extends JFrame {
 	}
 
 	public boolean moveUnit (int x, int y, int newX, int newY) {
-		// if this unit a move left
-		if (tiles[x][y].getUnit().getMovesLeft() >= 1) {
-			// if this unit can move to the new tile
-			if (this.tiles[newX][newY].getType().equals("LAND")) {
+		if (
+			tiles[x][y].getUnit().getMovesLeft() >= 1 &&		// if this unit a move left
+			this.tiles[newX][newY].getType().equals("LAND") &&	// if this unit can move to the new tile
+			this.tiles[newX][newY].getUnit() == null			// if the new tile does not have a unit already in it
+		) {
 				// remove a move from this unit
-				tiles[x][y].getUnit().removeMove();
+			tiles[x][y].getUnit().removeMove();
 
-				// move the unit
-				tiles[newX][newY].setUnit(tiles[x][y].getUnit());
-				tiles[x][y].deleteUnit();
+			// move the unit
+			tiles[newX][newY].setUnit(tiles[x][y].getUnit());
+			tiles[x][y].deleteUnit();
 
-				return true;
-			}
+			return true;
 		}
 
 		return false;
