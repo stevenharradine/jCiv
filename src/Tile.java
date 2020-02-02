@@ -5,10 +5,7 @@ package stevenharradine.jciv;
 
 import javax.swing.JButton;
 
-import javax.imageio.ImageIO;
-import java.io.FileInputStream;
 import javax.swing.ImageIcon;
-import java.awt.Image;
 
 public abstract class Tile extends JButton {
 	private String type;
@@ -56,11 +53,8 @@ public abstract class Tile extends JButton {
 	public void setCity (City newCity) {
 		this.city = newCity;
 
-		try {
-			Image img = ImageIO.read(new FileInputStream("graphics/village.png"));
-			this.setIcon(new ImageIcon(img));
-		} catch (Exception e) {
-			System.out.println(">"+e);
+		if (this.city != null) {
+			this.setIcon(new ImageIcon(city.getIcon()));
 		}
 
 		update ();

@@ -16,6 +16,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import javax.imageio.ImageIO;
+import java.io.FileInputStream;
+import java.awt.Image;
+
 public class City extends JFrame {
 	private String name;
 	private CityBuildQueue cityBuildQueue;
@@ -109,6 +113,18 @@ public class City extends JFrame {
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(300,500);//400 width and 500 height  
+	}
+
+	public Image getIcon () {
+		try {
+			Image img = ImageIO.read(new FileInputStream("graphics/village.png"));
+
+			return img;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+		return null;
 	}
 
 	public void displayCity () {

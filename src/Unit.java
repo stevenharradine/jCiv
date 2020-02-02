@@ -132,9 +132,10 @@ public abstract class Unit extends JFrame {
 	public Image getIcon () {
 		try {
 			Image img = ImageIO.read(new FileInputStream("graphics/" + this.type + ".png"));
+			
 			return img;
 		} catch (Exception e) {
-			System.out.println(">"+e);
+			System.out.println(e);
 		}
 
 		return null;
