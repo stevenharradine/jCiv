@@ -17,7 +17,6 @@ import java.awt.FlowLayout;
 
 import javax.imageio.ImageIO;
 import java.io.FileInputStream;
-import javax.swing.ImageIcon;
 import java.awt.Image;
 
 public abstract class Unit extends JFrame {
