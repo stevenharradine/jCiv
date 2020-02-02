@@ -5,6 +5,11 @@ package stevenharradine.jciv;
 
 import javax.swing.JButton;
 
+import javax.imageio.ImageIO;
+import java.io.FileInputStream;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+
 public abstract class Tile extends JButton {
 	private String type;
 	private Unit unit = null;
@@ -26,10 +31,18 @@ public abstract class Tile extends JButton {
 	public void setUnit (Unit newUnit) {
 		this.unit = newUnit;
 
+		if (this.city == null) {
+			this.setIcon(new ImageIcon(unit.getIcon()));
+		}
+
 		update ();
 	}
 	public void deleteUnit () {
 		this.unit = null;
+
+		if (this.city == null) {
+			this.setIcon(null);
+		}
 		
 		update ();
 	}
@@ -43,6 +56,13 @@ public abstract class Tile extends JButton {
 	public void setCity (City newCity) {
 		this.city = newCity;
 
+		try {
+			Image img = ImageIO.read(new FileInputStream("graphics/village.png"));
+			this.setIcon(new ImageIcon(img));
+		} catch (Exception e) {
+			System.out.println(">"+e);
+		}
+
 		update ();
 	}
 	public City getCity () {
@@ -50,8 +70,6 @@ public abstract class Tile extends JButton {
 	}
 
 	public void update () {
-		this.setText (this.toString());
-
 		if (this.city != null) {
 			this.city.updateLabels();
 		}

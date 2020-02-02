@@ -15,6 +15,11 @@ import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.imageio.ImageIO;
+import java.io.FileInputStream;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+
 public abstract class Unit extends JFrame {
 	public static Unit[] UNITS_AVAILABLE = { new Settler () };
 
@@ -123,6 +128,17 @@ public abstract class Unit extends JFrame {
 
 	public String getUnitID () {
 		return this.unitID;
+	}
+
+	public Image getIcon () {
+		try {
+			Image img = ImageIO.read(new FileInputStream("graphics/" + this.type + ".png"));
+			return img;
+		} catch (Exception e) {
+			System.out.println(">"+e);
+		}
+
+		return null;
 	} 
 
 	public void setType (String newType) {
