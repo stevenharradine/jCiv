@@ -14,9 +14,16 @@ public class BuildCity extends Action {
 
 	public boolean act () {
 		Tile tile = JCiv.map.getTile(this.getParentUnit().getUnitID());
+		String cityName = null;
+		boolean isCityNameExist = false;
 
-		TextInput cityNameInput = new TextInput ("Enter city name", "kanata", this.getParentUnit()); 
- 		String cityName = cityNameInput.getInput();
+		do {
+			String title = isCityNameExist ? "Error: City " + cityName + " already exists" : "New city";
+			TextInput cityNameInput = new TextInput (title, "Enter city name" , "kanata", this.getParentUnit()); 
+	 		cityName = cityNameInput.getInput();
+
+	 		isCityNameExist = JCiv.map.isCityNameExist(cityName);
+	 	} while (isCityNameExist);
 
  		// build the city
 		tile.setCity (new City (cityName));

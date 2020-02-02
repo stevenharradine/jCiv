@@ -140,6 +140,19 @@ public class Map extends JFrame {
 		return stringMap;
 	}
 
+	public boolean isCityNameExist (String name) {
+		// search the whole map
+		for (int i = 0; i < JCiv.map.getTiles().length; i++) {
+			for (int j = 0; j < JCiv.map.getTiles()[i].length; j++) {
+				if (JCiv.map.getTile(i,j).getCity() != null && JCiv.map.getTile(i,j).getCity().getName().equals(name)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 	public Tile getTile (String id) {
 		// find the unit on the map
 		for (int i = 0; i < JCiv.map.getTiles().length; i++) {

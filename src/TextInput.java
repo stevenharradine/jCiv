@@ -7,11 +7,13 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class TextInput {
+	private String title;
 	private String text;
 	private String defaultText;
 	private JFrame frame;
 
-	public TextInput (String newText, String newDefaultText, JFrame newFrame) {
+	public TextInput (String newTitle, String newText, String newDefaultText, JFrame newFrame) {
+		this.title = newTitle;
 		this.text = newText;
 		this.defaultText = newDefaultText;
 		this.frame = newFrame;
@@ -21,7 +23,7 @@ public class TextInput {
 		String inputText = (String)JOptionPane.showInputDialog(
 			this.frame,
 			this.text,
-			"Customized Dialog",
+			this.title,
 			JOptionPane.PLAIN_MESSAGE,
 			null,
 			null,
