@@ -4,7 +4,6 @@
 package stevenharradine.jciv;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.FileReader;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
