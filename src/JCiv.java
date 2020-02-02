@@ -27,7 +27,11 @@ class JCiv {
 			builder.append(ALPHA_NUMERIC_STRING.charAt(character));
 		}
 
-		// TODO: Make sure the id is uniqe on the map before actually returning
-		return builder.toString();
+		String newHash = builder.toString();
+		if (JCiv.map.getTile(newHash) == null) {
+			return newHash;
+		} else {
+			return generateRandomID();
+		}
 	}
 }
