@@ -20,7 +20,7 @@ import java.io.FileInputStream;
 import java.awt.Image;
 
 public abstract class Unit extends JFrame {
-	public static Unit[] UNITS_AVAILABLE = { new Settler () };
+	public static Unit[] UNITS_AVAILABLE = { new Settler (), new Worker () };
 
 	private String type;
 	private int moves = 0;
