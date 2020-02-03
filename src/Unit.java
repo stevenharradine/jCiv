@@ -195,8 +195,8 @@ public abstract class Unit extends JFrame {
 
 			actions[i].addActionListener (new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					BuildCity buildCity = (BuildCity)e.getSource();
-					buildCity.act();
+					Action action = (Action)e.getSource();
+					action.act();
 				}
 			});
 		}
