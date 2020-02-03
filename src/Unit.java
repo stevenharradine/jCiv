@@ -88,29 +88,42 @@ public abstract class Unit extends JFrame {
 				}
 				
 				boolean isMoveSuccess = false;
-			    if ("9".equals(action)) {			// move up/right
-			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x - 1, y + 1);
-			    } else if ("8".equals(action)) {	// move up
-			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x - 1, y);
-			    } else if ("7".equals(action)) {	// move up/left
-			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x - 1, y - 1);
-			    } else if ("4".equals(action)) {	// move left
-			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x, y - 1);
-			    } else if ("6".equals(action)) {	// move right
-			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x, y + 1);
-			    } else if ("3".equals(action)) {	// move down/right
-			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x + 1, y + 1);
-			    } else if ("2".equals(action)) {	// move down
-			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x + 1, y);
-			    } else if ("1".equals(action)) {	// move down/left
-			    	isMoveSuccess = JCiv.map.moveUnit(x, y, x + 1, y - 1);
-			    }
+				int newX = x;
+				int newY = y;
+				if ("9".equals(action)) {			// move up/right
+					newX--;
+					newY++;
+				} else if ("8".equals(action)) {	// move up
+					newX--;
+				} else if ("7".equals(action)) {	// move up/left
+					newX--;
+					newY--;
+				} else if ("4".equals(action)) {	// move left
+					newY--;
+				} else if ("6".equals(action)) {	// move right
+					newY++;
+				} else if ("3".equals(action)) {	// move down/right
+					newX++;
+					newY++;
+				} else if ("2".equals(action)) {	// move down
+					newX++;
+				} else if ("1".equals(action)) {	// move down/left
+					newX++;
+					newY--;
+				}
+				isMoveSuccess = JCiv.map.moveUnit(x, y, newX, newY);
 
-			    if (isMoveSuccess) {
+				if (isMoveSuccess) {
+					if (JCiv.map.getTile(x,y).getCity() != null) {
+						JCiv.map.getTile(x,y).getCity().updateLabels();
+					}
+					if (JCiv.map.getTile(newX,newY).getCity() != null) {
+						JCiv.map.getTile(newX,newY).getCity().updateLabels();
+					}
+
 					unit.updateLabels();
 					unit.repaint();
-					JCiv.map.repaint();
-			    }
+				}
 			}
 		});
 
