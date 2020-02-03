@@ -15,13 +15,15 @@ public class BuildFarm extends Action {
 
 		tile.setEnhancement ("farm");
 
+		this.updateLabels();
+
 		return true;
 	}
 
 	public void updateLabels () {
 		Tile tile = JCiv.map.getTile(this.getParentUnit().getUnitID());
-		City city = tile.getCity();
+		String enhancement = tile.getEnhancement();
 
-		this.setEnabled(city == null ? true : false);
+		this.setEnabled(enhancement == null ? true : (enhancement.equals("farm") ? false : true) );
 	}
 }
