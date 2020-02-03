@@ -3,8 +3,6 @@
  */
 package stevenharradine.jciv;
 
-import java.awt.event.WindowEvent;
-
 public class BuildFarm extends Action {
 	public BuildFarm (Unit newParentUnit) {
 		this.setName ("Build farm");
@@ -14,7 +12,7 @@ public class BuildFarm extends Action {
 
 	public boolean act () {
 		// TODO: Build farm
-		
+
 		return true;
 	}
 
