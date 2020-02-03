@@ -11,7 +11,9 @@ public class BuildFarm extends Action {
 	}
 
 	public boolean act () {
-		// TODO: Build farm
+		Tile tile = JCiv.map.getTile(this.getParentUnit().getUnitID());
+
+		tile.setEnhancement ("farm");
 
 		return true;
 	}

@@ -10,7 +10,7 @@ class JCiv {
     	map = new Map ("circle.map");
 
 		map.addUnit(new Settler(), 1, 2);
-		map.addUnit(new Settler(), 2, 3);
+		map.addUnit(new Worker(), 2, 3);
 
 		City city = new City ("Test City");
 
