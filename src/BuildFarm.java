@@ -24,6 +24,6 @@ public class BuildFarm extends Action {
 		Tile tile = JCiv.map.getTile(this.getParentUnit().getUnitID());
 		String enhancement = tile.getEnhancement();
 
-		this.setEnabled(enhancement == null ? true : (enhancement.equals("farm") ? false : true) );
+		this.setEnabled(enhancement == null ? true : ("farm".equals(enhancement) ? false : true) );
 	}
 }
