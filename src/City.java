@@ -182,8 +182,11 @@ public class City extends JFrame {
 
 		// if the build queue is complete
 		if (this.cityBuildQueue.getUnit() != null && this.cityBuildQueue.getProduction() >= this.cityBuildQueue.getUnit().getProductionCost()) {
-			map.getTile(x, y).setUnit (cityBuildQueue.getUnit());
-			cityBuildQueue.deleteUnit();
+			Tile curTile = map.getTile(x, y);
+			if (curTile.hasUnit()) {
+				map.getTile(x, y).setUnit (cityBuildQueue.getUnit());
+				cityBuildQueue.deleteUnit();
+			}
 		}
 
 		// update labels

@@ -46,6 +46,10 @@ public abstract class Tile extends JButton {
 			return this.unit;
 		}
 	}
+	public boolean hasUnit () {
+		return this.unit == null;
+	}
+
 	public void setCity (City newCity) {
 		this.city = newCity;
 
@@ -53,6 +57,10 @@ public abstract class Tile extends JButton {
 	}
 	public City getCity () {
 		return this.city;
+	}
+
+	public boolean hasCity () {
+		return this.city == null;
 	}
 
 	public String getEnhancement () {
