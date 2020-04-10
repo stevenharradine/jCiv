@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Point;
 
 import java.awt.BorderLayout;
 
@@ -153,13 +154,52 @@ public class Map extends JFrame {
 		return false;
 	}
 
-	public Tile getTile (String id) {
+	public Unit getUnit (String id) {
+		// TODO: refactor with getTileCoordinates
 		// find the unit on the map
 		for (int i = 0; i < JCiv.map.getTiles().length; i++) {
 			for (int j = 0; j < JCiv.map.getTiles()[i].length; j++) {
-				if (JCiv.map.getTile(i,j).getUnit() != null && JCiv.map.getTile(i,j).getUnit().getUnitID().equals(id) ||
-					JCiv.map.getTile(i,j).getCity() != null && JCiv.map.getTile(i,j).getCity().getCityID().equals(id)) {
+				Tile thisTile = JCiv.map.getTile(i,j);
+
+				if (thisTile.hasUnit() && thisTile.getUnit().getUnitID().equals(id)) {
+					return thisTile.getUnit();
+				} else if (thisTile.hasCity() && thisTile.getCity().hasCitizen(id)) {
+					return thisTile.getCity().getCitizen(id);
+				}
+			}
+		}
+
+		return null;
+	}
+	public Tile getTile (String id) {
+		// TODO: refactor with getTileCoordinates
+		// find the unit on the map
+		for (int i = 0; i < JCiv.map.getTiles().length; i++) {
+			for (int j = 0; j < JCiv.map.getTiles()[i].length; j++) {
+				Tile thisTile = JCiv.map.getTile(i,j);
+
+				if (thisTile.hasUnit() && thisTile.getUnit().getUnitID().equals(id) ||
+					thisTile.hasCity() && thisTile.getCity().getCityID().equals(id) ||
+					thisTile.hasCity() && thisTile.getCity().hasCitizen(id)) {
+					
 					return JCiv.map.getTile(i,j);
+				}
+			}
+		}
+
+		return null;
+	}
+	public Point getTileCoordinates (String id) {
+		// find the unit on the map
+		for (int i = 0; i < JCiv.map.getTiles().length; i++) {
+			for (int j = 0; j < JCiv.map.getTiles()[i].length; j++) {
+				Tile thisTile = JCiv.map.getTile(i,j);
+
+				if (thisTile.hasUnit() && thisTile.getUnit().getUnitID().equals(id) ||
+					thisTile.hasCity() && thisTile.getCity().getCityID().equals(id) ||
+					thisTile.hasCity() && thisTile.getCity().hasCitizen(id)) {
+					
+					return new Point (i,j);
 				}
 			}
 		}
@@ -176,6 +216,37 @@ public class Map extends JFrame {
 	public boolean moveUnit (int x, int y, int newX, int newY) {
 		if (
 			tiles[x][y].getUnit().getMovesLeft() >= 1 &&		// if this unit a move left
+			this.tiles[newX][newY].getType().equals("LAND") &&	// if this unit can move to the new tile
+			this.tiles[newX][newY].getUnit() == null			// if the new tile does not have a unit already in it
+		) {
+				// remove a move from this unit
+			tiles[x][y].getUnit().removeMove();
+
+			// move the unit
+			tiles[newX][newY].setUnit(tiles[x][y].getUnit());
+			tiles[x][y].deleteUnit();
+
+			return true;
+		}
+
+		return false;
+	}
+	public boolean moveUnit (String id, int newX, int newY) {
+		Point point = getTileCoordinates (id);
+		int x = (int)point.getX();
+		int y = (int)point.getY();
+		Unit unit = JCiv.map.getUnit (id);
+
+		if (unit.getMovesLeft() >= 1) {	// if this unit a move left
+			if (unit.isCivilian()) {
+				
+			} else if (unit.isMilitary()) {
+
+			}
+		}
+
+		if (
+			unit.getMovesLeft() >= 1 &&		// if this unit a move left
 			this.tiles[newX][newY].getType().equals("LAND") &&	// if this unit can move to the new tile
 			this.tiles[newX][newY].getUnit() == null			// if the new tile does not have a unit already in it
 		) {

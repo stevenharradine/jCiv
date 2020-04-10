@@ -3,11 +3,13 @@
  */
 package stevenharradine.jciv;
 
-public class Citizen {
+public class Citizen extends Unit {
 	private int food;
 
 	public Citizen () {
 		this.food = 0;
+		this.setType ("Citizen");
+		this.setMoves(3);
 	}
 
 	public static int sumFood (Citizen[] citizens) {

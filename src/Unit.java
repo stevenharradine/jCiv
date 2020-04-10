@@ -64,14 +64,13 @@ public abstract class Unit extends JFrame {
 	}
 
 	public JButton createMoveButton (String text) {
-		JButton button = new JButton (text);
+		JButtonID button = new JButtonID (text, unitID);
 
 		button.addActionListener (new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String title = ((JFrame)((JButton)e.getSource()).getParent().getParent().getParent().getParent().getParent()).getTitle();
-				String action = ((JButton)e.getSource()).getText();
-				String[] titleParts = title.split ("\\|");
-				String unitID = titleParts[1];
+				JButtonID thisButton = (JButtonID)e.getSource();
+				String unitID = thisButton.getID();
+				String action = thisButton.getText();
 				Unit unit = null;
 
 				// find the unit on the map
@@ -111,7 +110,10 @@ public abstract class Unit extends JFrame {
 					newX++;
 					newY--;
 				}
-				isMoveSuccess = JCiv.map.moveUnit(x, y, newX, newY);
+
+				System.out.println (unitID);
+				isMoveSuccess = JCiv.map.moveUnit(unitID, newX, newY);
+//				isMoveSuccess = JCiv.map.moveUnit(x, y, newX, newY);
 
 				if (isMoveSuccess) {
 					if (JCiv.map.getTile(x,y).getCity() != null) {

@@ -12,7 +12,8 @@ import javax.swing.ImageIcon;
 
 public abstract class Tile extends JButton {
 	private String type;
-	private Unit unit = null;
+	private Unit militaryUnit = null;
+	private Unit civilianUnit = null;
 	private City city = null;
 	private String enhancement = null;
 
@@ -30,24 +31,45 @@ public abstract class Tile extends JButton {
 	}
 
 	public void setUnit (Unit newUnit) {
-		this.unit = newUnit;
+		this.militaryUnit = newUnit;
 
 		update ();
 	}
 	public void deleteUnit () {
-		this.unit = null;
+		this.militaryUnit = null;
 		
 		update ();
 	}
 	public Unit getUnit () {
-		if (this.unit != null && this.unit.getUnitType().equals("")) {
+		if (this.militaryUnit != null && this.militaryUnit.getUnitType().equals("")) {
 			return null;
 		} else{
-			return this.unit;
+			return this.militaryUnit;
 		}
 	}
 	public boolean hasUnit () {
-		return this.unit == null;
+		return this.militaryUnit != null;
+	}
+
+	public void setCivilianUnit (Unit newUnit) {
+		this.civilianUnit = newUnit;
+
+		update ();
+	}
+	public void deleteCivilianUnit () {
+		this.civilianUnit = null;
+		
+		update ();
+	}
+	public Unit getCivilianUnit (String id) {
+		if (this.hasCity()) {
+			return this.getCity().getCitizen(id);
+		} else {
+			return this.civilianUnit;
+		}
+	}
+	public boolean hasCivilianUnit () {
+		return this.civilianUnit == null;
 	}
 
 	public void setCity (City newCity) {
@@ -60,7 +82,7 @@ public abstract class Tile extends JButton {
 	}
 
 	public boolean hasCity () {
-		return this.city == null;
+		return this.city != null;
 	}
 
 	public String getEnhancement () {
@@ -75,8 +97,8 @@ public abstract class Tile extends JButton {
 	public void update () {
 		if (this.city != null) {
 			this.setIcon(new ImageIcon(city.getIcon()));
-		} else if (this.unit != null) {
-			this.setIcon(new ImageIcon(unit.getIcon()));
+		} else if (this.militaryUnit != null) {
+			this.setIcon(new ImageIcon(militaryUnit.getIcon()));
 		} else if (this.enhancement != null) {
 			try {
 				Image img = ImageIO.read(new FileInputStream("graphics/FARM.png"));
@@ -91,6 +113,6 @@ public abstract class Tile extends JButton {
 	}
 
 	public String toString () {
-		return this.type.charAt (0) + (this.city != null ? "C" : "") + (this.unit != null ? this.unit.getUnitType().charAt(0) : "");
+		return this.type.charAt (0) + (this.city != null ? "C" : "") + (this.militaryUnit != null ? this.militaryUnit.getUnitType().charAt(0) : "");
 	}
 }

@@ -10,6 +10,7 @@ import javax.swing.JButton;
 
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
+import javax.swing.BoxLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,7 +29,7 @@ public class City extends JFrame {
 
 	private JLabel stationedUnitLabel;
 	private JButton stationedUnitOpenButton;
-	private JLabel populationLabel;
+	private JPanel populationPanel;
 	private JLabel buildQueueLabel;
 
 	public City (String newName) {
@@ -42,7 +43,8 @@ public class City extends JFrame {
 		this.population = Citizen.addCitizen(population);
 
 		stationedUnitLabel = new JLabel ();
-		populationLabel = new JLabel ();
+		populationPanel = new JPanel ();
+		populationPanel.setLayout(new BoxLayout(populationPanel, BoxLayout.PAGE_AXIS));
 		buildQueueLabel = new JLabel ();
 
 		setTitle("City: " + this.name + " |"+ this.cityID);
@@ -66,7 +68,7 @@ public class City extends JFrame {
 		stationedUnitPanel.add (stationedUnitOpenButton, BorderLayout.EAST);
 
 		add (stationedUnitPanel);
-		add (this.populationLabel);
+		add (this.populationPanel);
 
 		JButton changeBuildQueueButton = new JButton ("Change");
 		changeBuildQueueButton.addActionListener (new ActionListener() {
@@ -141,6 +143,24 @@ public class City extends JFrame {
 	public String getCityID () {
 		return this.cityID;
 	}
+	public boolean hasCitizen (String id) {
+		for (int i = 0; i < this.population.length; i++) {
+			if (this.population[i].getUnitID().equals(id)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+	public Unit getCitizen (String id) {
+		for (int i = 0; i < this.population.length; i++) {
+			if (this.population[i].getUnitID().equals(id)) {
+				return this.population[i];
+			}
+		}
+
+		return null;
+	}
 	public Citizen[] getCitizens () {
 		return this.population;
 	}
@@ -197,21 +217,33 @@ public class City extends JFrame {
 		updateStationedUnitLabel();
 		updatePopulationLabel();
 		updateBuildQueueLabel();
+
+		this.revalidate();
+		this.repaint();
 	}
 
 	public void updatePopulationLabel () {
-		String buffer = "<html>";
-
-		buffer += "Population: " + population.length + "<br>";
+		this.populationPanel.removeAll();
+		this.populationPanel.add (new JLabel ("<html>Population: " + this.population.length + "</html>"));
 
 		for (int i = 0; i < this.population.length; i++) {
-			buffer += "&nbsp;&nbsp;&nbsp;&nbsp;";
-			buffer += "Person " + (i + 1) + " has " + population[i].getFood() + " food<br>";
+			JPanel row = new JPanel ();
+			row.setLayout(new BorderLayout ());
+		
+			JButtonID button = new JButtonID ("Open", this.population[i].getUnitID());
+			button.addActionListener (new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String unit_id = ((JButtonID)((JButton)e.getSource())).getID();
+	
+					JCiv.map.getTile(unit_id).getCivilianUnit(unit_id).setVisible(true);
+				}
+			});
+
+			row.add (button, BorderLayout.WEST);
+			row.add (new JLabel ("Person " + (i + 1) + " has " + this.population[i].getFood() + " food"), BorderLayout.EAST);
+
+			this.populationPanel.add (row);
 		}
-
-		buffer += "</html>";
-
-		this.populationLabel.setText (buffer);
 	}
 
 	public void updateBuildQueueLabel () {
